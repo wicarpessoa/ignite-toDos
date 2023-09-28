@@ -1,0 +1,80 @@
+.wrapper {
+	margin: -1.625rem auto 0;
+	display: flex;
+	flex-direction: column;
+	max-width: 46rem;
+	padding: 0 3rem;
+}
+
+.taskMenu {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	gap: 8px;
+}
+.inputWrapper {
+	width: 100%;
+}
+.input {
+	height: calc(3.375rem);
+	border-radius: 8px;
+	width: 100%;
+	background-color: var(--gray-500);
+
+	border: 1px solid var(--gray-700);
+
+	padding: 1rem;
+	color: var(--gray-100);
+	font-size: 1rem;
+}
+
+.input::placeholder {
+	color: var(--gray-300);
+}
+
+.taskContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.tagsWrapper {
+	display: flex;
+	justify-content: space-between;
+	margin: 4rem 0 1.5rem;
+}
+
+.tagsWrapper div {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	font-weight: 700;
+}
+
+.tasksCount {
+	font-size: 0.875rem;
+	color: var(--blue);
+}
+.doneTasksCount {
+	font-size: 0.875rem;
+	color: var(--purple);
+}
+.tasksCountNumber,
+.doneTasksCountNumber {
+	color: var(--gray-200);
+	display: flex;
+	font-size: 0.75rem;
+	background-color: var(--gray-400);
+	padding: 0 8px;
+	border-radius: 9999px;
+	white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+	html {
+		font-size: 87.5%;
+	}
+	.wrapper {
+		padding: 0 1rem;
+	}
+}

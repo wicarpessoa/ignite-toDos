@@ -5,6 +5,7 @@ import { TaskItem } from './components/TaskItem'
 import { ChangeEvent, useState } from 'react'
 import { v4 as uuidv4} from 'uuid'
 import { TaskMenu } from './components/TaskMenu'
+import { ClipboardText } from '@phosphor-icons/react'
 
 interface TaskProps {
   id: string;
@@ -37,7 +38,6 @@ export function App() {
     const tasksFiltered = tasks.filter(task=> {
       return taskId !== task.id
     })
-
     setTasks(tasksFiltered)
   }
 
@@ -54,13 +54,18 @@ export function App() {
           <div><span className={styles.tasksCount}>Tarefas criadas</span><span className={styles.tasksCountNumber}>{tasks.length}</span></div>
           <div><span className={styles.doneTasksCount}>Concluídas</span><span className={styles.doneTasksCountNumber} >{tasks.length === 0 ? (tasks.length):(`${tasksCompletedCounter} de ${tasks.length}`)}</span></div>
         </div>
-      {tasks && <ul className={styles.taskContainer}>
+      {tasks.length !== 0 ? (<ul className={styles.taskContainer}>
         {tasks.map(task=> {
           return (
             <TaskItem key={task.id} id={task.id} title={task.title} isChecked={task.isCompleted} onChange={() => handleToggleTaskAsCompleted(task.id)} onHandleRemove={()=> handleRemoveTask(task.id)}/>
           )
         })}
-      </ul>}
+      </ul>): (<div className={styles.tasksEmptyContainer}>
+        <ClipboardText size={56} />
+        <span>Você ainda não tem tarefas cadastradas
+</span>
+        <span>Crie tarefas e organize seus itens a fazer</span>
+      </div>)}
       </div>
     </div>
     )

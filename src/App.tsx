@@ -1,11 +1,10 @@
-import { PlusCircle  } from '@phosphor-icons/react'
-import { Button } from './components/Button'
 import { Header } from './components/Header'
 import './global.css'
 import styles from './App.module.css'
 import { TaskItem } from './components/TaskItem'
 import { ChangeEvent, useState } from 'react'
 import { v4 as uuidv4} from 'uuid'
+import { TaskMenu } from './components/TaskMenu'
 
 interface TaskProps {
   id: string;
@@ -26,31 +25,42 @@ export function App() {
     setNewTask("")
   }
 
-  const isNewTaskEmpty = newTask.length === 0
+  function handleToggleTaskAsCompleted(id: string) {
+    setTasks((prevState) =>
+      prevState.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+      )
+    );
+  }
+
+  function handleRemoveTask(taskId:string) {
+    const tasksFiltered = tasks.filter(task=> {
+      return taskId !== task.id
+    })
+
+    setTasks(tasksFiltered)
+  }
+
+  const tasksCompletedCounter = tasks.reduce((accumulator,task) => {
+    return task.isCompleted ? (accumulator + 1 ): accumulator
+  }, 0)
+
   return (
     <div>
       <Header/>
       <div className={styles.wrapper}>
-        <div className={styles.taskMenu}>
-          <div className={styles.inputWrapper}>
-            <input type="text"  className={styles.input} placeholder='Adicione uma nova tarefa' value={newTask} onChange={handleNewTaskChange} />
-          </div>
-          <Button title="criar" onClick={handleCreateTask} disabled={isNewTaskEmpty}>
-            <PlusCircle size={16}/>
-          </Button>
-        </div>
+        <TaskMenu handleNewTaskChange={handleNewTaskChange} handleCreateTask={handleCreateTask} newTask={newTask}/>
         <div className={styles.tagsWrapper}>
-          <div><span className={styles.tasksCount}>Tarefas criadas</span><span className={styles.tasksCountNumber}>5</span></div>
-          <div><span className={styles.doneTasksCount}>Concluídas</span><span className={styles.doneTasksCountNumber} >2 de 5</span></div>
+          <div><span className={styles.tasksCount}>Tarefas criadas</span><span className={styles.tasksCountNumber}>{tasks.length}</span></div>
+          <div><span className={styles.doneTasksCount}>Concluídas</span><span className={styles.doneTasksCountNumber} >{tasks.length === 0 ? (tasks.length):(`${tasksCompletedCounter} de ${tasks.length}`)}</span></div>
         </div>
-      <ul className={styles.taskContainer}>
+      {tasks && <ul className={styles.taskContainer}>
         {tasks.map(task=> {
           return (
-            <TaskItem key={task.id} id={task.id} title={task.title}/>
-
+            <TaskItem key={task.id} id={task.id} title={task.title} isChecked={task.isCompleted} onChange={() => handleToggleTaskAsCompleted(task.id)} onHandleRemove={()=> handleRemoveTask(task.id)}/>
           )
         })}
-      </ul>
+      </ul>}
       </div>
     </div>
     )

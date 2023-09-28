@@ -4,15 +4,18 @@ import { ComponentProps } from 'react'
 interface TaskItemProps extends ComponentProps<"li"> {
   title: string
   id: string
+  isChecked?: boolean
+  onChange: () => void
+  onHandleRemove: ()=> void
 }
 
-export  function TaskItem({title, id, ...props} :TaskItemProps) {
+export  function TaskItem({title,isChecked,onChange, id, onHandleRemove, ...props} :TaskItemProps) {
   return (
-       <li {...props} className={styles.task}>
-          <input type="checkbox" id={id} />
+       <li {...props} className={`${styles.task} ${isChecked ? styles.checked : styles.notChecked}`}>
+          <input type="checkbox" id={id} checked={isChecked} onChange={onChange}  />
           <label htmlFor={id} className={styles.taskCheckbox}></label>
           <p>{title}</p>
-          <button>
+          <button onClick={onHandleRemove}>
             <Trash size={14}/>
           </button>
         </li>

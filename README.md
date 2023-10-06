@@ -1,27 +1,68 @@
-# React + TypeScript + Vite
+# Task Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application allows you to manage your to-dos with a user-friendly and modern interface. The project was built using React, Vite, CSS Modules, and TypeScript.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Follow the steps below to run the application locally:
 
-## Expanding the ESLint configuration
+1. **Clone the Repository**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```bash
+   git clone <repository-url>
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+2. **Navigate to the Project Directory**
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+   ```bash
+   cd task-manager-app
+   ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. **Install the Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the Development Server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Access via Web Browser**  
+   Open your browser and access the application at http://localhost:5173.
+
+## Dependencies
+
+The main dependencies of this project include:
+
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- vite: ^4.4.5
+- css-modules: ^1.0.0
+- typescript: ^5.0.2
+
+## Dev Dependencies
+
+- @types/react: ^18.2.15
+- @types/react-dom: ^18.2.7
+- @vitejs/plugin-react: ^4.0.3
+- @typescript-eslint/eslint-plugin: ^6.0.0
+- @typescript-eslint/parser: ^6.0.0
+- vite-plugin-css-modules: ^1.0.0
+
+## License
+
+MIT License
+
+## Contact Information
+
+- **LinkedIn**: [Wicar Pessoa](https://www.linkedin.com/in/wicar-pessoa-5b359b233/)
+
+## Additional Information
+
+### Upcoming Features
+
+1. Add the ability to categorize tasks.
+2. Implement a reminder system for tasks with specific dates.

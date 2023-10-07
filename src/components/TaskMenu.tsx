@@ -1,8 +1,7 @@
 import { PlusCircle } from '@phosphor-icons/react'
 import { Button } from './Button'
 import { ChangeEvent } from 'react';
-import styles from './TaskMenu.module.css'
-
+import styles from './TaskMenu1.module.css'
 interface TaskMenuProps  {
 newTask: string;
 handleNewTaskChange:  (e: ChangeEvent<HTMLInputElement>)=> void
